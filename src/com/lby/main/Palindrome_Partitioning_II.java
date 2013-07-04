@@ -1,7 +1,7 @@
 package com.lby.main;
 import java.util.Scanner;
 
-public class leet1 {
+public class Palindrome_Partitioning_II {
 	public static int minCut(String s) {
 		int len = s.length();
 		int[][] F = new int[len][len];
