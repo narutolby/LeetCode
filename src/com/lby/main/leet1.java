@@ -1,3 +1,4 @@
+package com.lby.main;
 import java.util.Scanner;
 
 public class leet1 {
