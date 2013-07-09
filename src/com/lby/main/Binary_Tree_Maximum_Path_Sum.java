@@ -25,10 +25,13 @@ public class Binary_Tree_Maximum_Path_Sum {
            right = (root.right==null?0:right);
            int leftMax = root.val+left;
            int rightMax = root.val+right;
-           int sum = left + right + root.val;
-           int tmp_max = Math.max(root.val, Math.max(sum, Math.max(leftMax, rightMax)));
+           int tmp_max = Math.max(root.val, Math.max(root.val, Math.max(leftMax, rightMax)));
+           int sum = root.val+left+right;
            if(tmp_max>max){
         	   max = tmp_max;
+           }
+           if(sum>max){
+        	   max = sum;
            }
            return tmp_max;
 	}
@@ -37,9 +40,3 @@ public class Binary_Tree_Maximum_Path_Sum {
       System.out.println(Integer.MIN_VALUE)           ;
 	}
 }
-class TreeNode {
-	      int val;
-	      TreeNode left;
-	      TreeNode right;
-	      TreeNode(int x) { val = x; }
-	  }
