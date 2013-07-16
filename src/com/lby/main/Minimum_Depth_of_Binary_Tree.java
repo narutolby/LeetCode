@@ -1,5 +1,10 @@
 package com.lby.main;
 
+/*
+ * Given a binary tree, find its minimum depth.
+
+The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
+ */
 public class Minimum_Depth_of_Binary_Tree {
 	public int minDepth(TreeNode root) {
 		if (root == null) {

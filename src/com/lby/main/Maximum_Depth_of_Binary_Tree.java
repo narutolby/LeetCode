@@ -1,5 +1,10 @@
 package com.lby.main;
 
+/*
+ * Given a binary tree, find its maximum depth.
+
+The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+ */
 public class Maximum_Depth_of_Binary_Tree {
 	public int minDepth(TreeNode root) {
 		if (root == null) {
