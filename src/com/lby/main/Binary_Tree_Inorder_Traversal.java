@@ -1,4 +1,4 @@
-package com.lby.main;
+package com.lby.main; 
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -20,6 +20,7 @@ import java.util.LinkedList;
 
  confused what "{1,#,2,3}" means? > read more on how binary tree is serialized on OJ.
  */
+ 
 public class Binary_Tree_Inorder_Traversal {
 	public ArrayList<Integer> inorderTraversal(TreeNode root) {
 		ArrayList<Integer> arry = new ArrayList<Integer>();
