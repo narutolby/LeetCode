@@ -29,6 +29,6 @@ public class Construct_Binary_Tree_from_Inorder_and_Postorder_Traversal {
             root.left = buildTree(inorder,s1,rootLeft-1,postorder,s2,s2+rootLeft-s1-1);
             root.right= buildTree(inorder,rootLeft+1,e1,postorder,s2+rootLeft-s1,e2-1);
             
-            return root;
+            return root; 
 	}
 }
