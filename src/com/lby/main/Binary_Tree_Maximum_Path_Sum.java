@@ -47,8 +47,4 @@ public class Binary_Tree_Maximum_Path_Sum {
            }
            return tmp_max;
 	}
-
-	public static void main(String[] args) {
-      System.out.println(Integer.MIN_VALUE)           ;
-	}
 }
