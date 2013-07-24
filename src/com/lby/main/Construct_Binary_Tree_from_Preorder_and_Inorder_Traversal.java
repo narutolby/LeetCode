@@ -25,7 +25,7 @@ public class Construct_Binary_Tree_from_Preorder_and_Inorder_Traversal {
            }
            root.left = buildTree(preorder,s1+1,s1+rootLeft-s2,inorder,s2,rootLeft-1);
            root.right= buildTree(preorder,s1+rootLeft-s2+1,e1,inorder,rootLeft+1,e2);
-           return root;
+           return root ;
            
 	 }
 }
