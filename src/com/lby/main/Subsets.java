@@ -1,6 +1,7 @@
 package com.lby.main;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 /*
@@ -29,6 +30,7 @@ public class Subsets {
              ArrayList<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
              ArrayList<Integer> sub = new ArrayList<Integer>();
              list.add(sub);
+             Arrays.sort(S); 
              for(int i : S){
             	 int len = list.size();
             	 for(int j=0;j<len;j++){
@@ -40,10 +42,4 @@ public class Subsets {
              }
              return list;
 	    }
-	 public static void main(String[]args){
-		 int[] array = {1,2,3};
-		 for(int i:array){
-			 System.out.println(i);
-		 }
-	 }
 }
