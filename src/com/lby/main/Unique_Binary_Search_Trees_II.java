@@ -22,7 +22,7 @@ public class Unique_Binary_Search_Trees_II {
              dp.add(null);
              for(int i=1;i<=n;i++){
             	 for(int j=1;j<=i;j++){
-            		 ArrayList<TreeNode> list = new ArrayList<TreeNode>();
+//            		 ArrayList<TreeNode> list = new ArrayList<TreeNode>();
             	 }
              }
              return nodeList;
