@@ -17,7 +17,7 @@ public class Reverse_Linked_List_II {
 		ListNode tmpHead = head,pH=null,pT=null;
 		int num = 1;
 		ListNode start=null;
-		while (tmpHead.next != null) {
+		while (tmpHead!= null) {
 			if(num==m-1){
 				start = tmpHead;
 			}
@@ -31,9 +31,13 @@ public class Reverse_Linked_List_II {
 					pT.next = null;
 					pH = pT;
 				}else{
+					ListNode tmp = tmpHead.next;
 					tmpHead.next = pH;
 					pH = tmpHead;
+					tmpHead = tmp;
 				}
+			}else{
+					tmpHead = tmpHead.next;
 			}
 			num++;
 		}
