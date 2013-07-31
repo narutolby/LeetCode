@@ -36,7 +36,7 @@ public class Subsets {
             	 for(int j=0;j<len;j++){
             		 sub= new ArrayList<Integer>();
             		 sub.addAll(list.get(j)) ;
-            		 sub.add(S[i]);
+            		 sub.add(i);
             		 list.add(sub);
             	 }
              }
