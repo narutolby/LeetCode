@@ -23,7 +23,7 @@ public class Minimum_Path_Sum {
         }
         for(int i=1;i<n;i++){
         	for(int j=1;j<m;j++){
-        		grid[j][i] = Math.min(grid[j][i-1], grid[j-1][i]);
+        		grid[j][i] = Math.min(grid[j][i-1], grid[j-1][i])+grid[j][i];
         	}
         }
         return grid[m-1][n-1];
