@@ -23,4 +23,23 @@ public class Jump_Game {
       if(cur >= len-1) return true;
       else return false;
     }
+
+    public boolean canJump_1(int[]A){
+        int len = A.length;
+        if(len == 0){return false;}
+        if(len == 1){return true;}
+        int start = 0;
+        return dfs(A,start,len);
+    }
+    public boolean dfs(int[]A,int start,int len){
+        if(A[start] == 0){return false;}
+       for(int i=A[start];i>=1;i--){
+            if(start+i>=len-1){return true;}
+            boolean can = dfs(A,start+i,len);
+            if(can){
+                return can;
+            }
+        }
+        return false;
+    }
 }
