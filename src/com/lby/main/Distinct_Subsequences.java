@@ -17,6 +17,10 @@ import java.util.Map;
  * Return 3.
  */
 public class Distinct_Subsequences {
+    /*
+     *  map构建倒排索引加递归小数据通过，大数据不过，尝试采用dp
+     */
+
     public int numDistinct(String S, String T) {
         Map<Character, List<Integer>> map = new HashMap<Character, List<Integer>>();
         int len = S.length(), len1 = T.length();
@@ -64,7 +68,35 @@ public class Distinct_Subsequences {
         return sum;
     }
     public static void main(String[]args){
-        System.out.println(new Distinct_Subsequences().numDistinct("ddd","dd"));
+        System.out.println(new Distinct_Subsequences().numDistinct_dp("ccc","c"));
+    }
+
+    /*
+     * 采用DP方式尝试
+     */
+    public int numDistinct_dp(String S,String T){
+       int lenS = S.length(),lenT = T.length();
+       int[][] dp = new int[lenS+1][lenT+1];
+       for(int i=0;i<lenS;i++) {
+          dp[i][lenT] = 1;
+       }
+       dp[lenS][lenT] = 1;
+       if(lenS<lenT){
+           return 0;
+       }
+       int count = 0;
+       for(int i=lenT-1;i>=0;i--){
+         for(int j=lenS-count-1;j>=0;j--){
+            char cT = T.charAt(i),cS = S.charAt(j);
+            if(cT == cS){
+                dp[j][i] = dp[j+1][i+1] + dp[j+1][i];
+            }else{
+                dp[j][i] = dp[j+1][i];
+            }
+         }
+         count++;
+       }
+        return dp[0][0];
     }
 }
 
