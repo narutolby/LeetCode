@@ -72,7 +72,7 @@ public class Distinct_Subsequences {
     }
 
     /*
-     * 采用DP方式尝试
+     * 采用DP方式尝试小数据，大数据都通过，oye
      */
     public int numDistinct_dp(String S,String T){
        int lenS = S.length(),lenT = T.length();
