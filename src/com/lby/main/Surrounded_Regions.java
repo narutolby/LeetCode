@@ -1,5 +1,8 @@
 package com.lby.main;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Created with IntelliJ IDEA.
  * User: narutolby
@@ -67,5 +70,11 @@ public class Surrounded_Regions {
         dfs(board, i-1, j, m, n);
         dfs(board, i, j+1, m, n);
         dfs(board, i, j-1, m, n);
+    }
+
+    public void bfs(char[][]board,int i,int j,int m,int n){
+        if(i<0 || i>=m || j<0 || j>=n || board[i][j] != 'O'){ return;}
+        Queue<Character> queue = new LinkedList<Character>();
+
     }
 }
