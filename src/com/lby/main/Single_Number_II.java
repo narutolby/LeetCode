@@ -12,6 +12,6 @@ package com.lby.main;
 public class Single_Number_II {
     public int singleNumber(int[] A) {
 
-
+        return 0;
     }
 }
