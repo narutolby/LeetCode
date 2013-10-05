@@ -13,6 +13,7 @@ Given the below binary tree,
      2   3
  */
 public class Binary_Tree_Maximum_Path_Sum {
+    //这个方法虽然能过，但是不好，重写
 	int max = Integer.MIN_VALUE;
 	public int maxPathSum(TreeNode root) {
 		        max = Integer.MIN_VALUE;
@@ -47,4 +48,27 @@ public class Binary_Tree_Maximum_Path_Sum {
            }
            return tmp_max;
 	}
+    /*****************************************************/
+
+    //第二个方法,Accepted
+
+    int _max = Integer.MIN_VALUE;
+    public int _maxPathSum(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+       _maxPathSumTmp(root);
+       return _max;
+    }
+    public int _maxPathSumTmp(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+        int leftMax = _maxPathSumTmp(root.left);
+        int rightMax = _maxPathSumTmp(root.right);
+        leftMax=(leftMax<0)?0:leftMax;
+        rightMax=(rightMax<0)?0:rightMax;
+        _max = Math.max(root.val+leftMax+rightMax,_max);
+        return Math.max(root.val+leftMax,root.val+rightMax);
+    }
 }
