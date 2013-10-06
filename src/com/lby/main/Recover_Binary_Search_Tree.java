@@ -8,6 +8,8 @@ package com.lby.main;
  * confused what "{1,#,2,3}" means? > read more on how binary tree is serialized on OJ.
  */
 public class Recover_Binary_Search_Tree {
+
+    /*First Method,数据都可以通过，利用的是BST中序遍历为递增序列找到两个错位的结点，交换结点的数值*/
 	Integer first = null;
 	TreeNode t1 = null;
 	TreeNode e1 = null, e2 = null;
