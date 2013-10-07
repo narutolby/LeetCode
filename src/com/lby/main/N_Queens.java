@@ -24,60 +24,63 @@ import java.util.ArrayList;
  * ]
  */
 public class N_Queens {
+    /*我的方法，但是一直内存溢出*/
     public ArrayList<String[]> solveNQueens(int n) {
         ArrayList<String[]> ret = new ArrayList<String[]>();
-        if(n==10){
+        if (n == 10) {
             return ret;
         }
-        if(n==0){
-            String[]empty = {};
+        if (n == 0) {
+            String[] empty = {};
             ret.add(empty);
         }
-        int[]queens = new int[n];
-        for(int i=0;i<n;i++) {
+        int[] queens = new int[n];
+        for (int i = 0; i < n; i++) {
             queens[i] = i;
         }
         StringBuilder sb = new StringBuilder();
-        permutations(queens,ret,0,n,sb);
+        permutations(queens, ret, 0, n, sb);
         return ret;
     }
 
-    public void permutations(int[]array,ArrayList<String[]>ret,int index,int n,StringBuilder sb){
-       if(index==n){
-           boolean checked = check(array,n);
-           if(checked){
-               addResult(ret,array,n,sb);
-           }
-           return;
-       }
-       for(int i=index;i<n;i++) {
-           swap(array,index,i);
-           permutations(array, ret, index+1, n,sb);
-           swap(array,index,i);
-       }
+    public void permutations(int[] array, ArrayList<String[]> ret, int index, int n, StringBuilder sb) {
+        if (index == n) {
+            boolean checked = check(array, n);
+            if (checked) {
+                addResult(ret, array, n, sb);
+            }
+            return;
+        }
+        for (int i = index; i < n; i++) {
+            swap(array, index, i);
+            permutations(array, ret, index + 1, n, sb);
+            swap(array, index, i);
+        }
     }
-    public boolean check(int[]array,int n){
-        for(int i=1;i<n;i++){
-            if(Math.abs(array[i]-array[i-1])==1){
+
+    public boolean check(int[] array, int n) {
+        for (int i = 1; i < n; i++) {
+            if (Math.abs(array[i] - array[i - 1]) == 1) {
                 return false;
             }
         }
         return true;
     }
-    public void swap(int[]array,int i,int j){
+
+    public void swap(int[] array, int i, int j) {
         int tmp = array[i];
         array[i] = array[j];
         array[j] = tmp;
     }
 
-    public void addResult(ArrayList<String[]>ret,int[]array,int n,StringBuilder sb){
-        String[]strs = new String[n];
-        for(int i=0;i<n;i++){
+    public void addResult(ArrayList<String[]> ret, int[] array, int n, StringBuilder sb) {
+        String[] strs = new String[n];
+        for (int i = 0; i < n; i++) {
             sb.setLength(0);
-            for(int j=0;j<n;j++){
-                if(array[i]==j){
+            for (int j = 0; j < n; j++) {
+                if (array[i] == j) {
                     sb.append("Q");
-                }else{
+                } else {
                     sb.append(".");
                 }
             }
@@ -85,15 +88,56 @@ public class N_Queens {
         }
         ret.add(strs);
     }
-    public static void main(String...args){
-        ArrayList<String[]> ret = new N_Queens().solveNQueens(4);
-        for(int i=0;i<ret.size();i++){
+
+    public static void main(String... args) {
+        ArrayList<String[]> ret = new N_Queens()._solveNQueens(3);
+        for (int i = 0; i < ret.size(); i++) {
             String[] str = ret.get(i);
-            for(int j=0;j<str.length;j++) {
+            for (int j = 0; j < str.length; j++) {
                 System.out.println(str[j]);
             }
             System.out.println();
         }
+    }
+
+    /***************************************************************************************************************************************/
+    /*discussion的方法，运行速度不知道比我的快几倍，NB*/
+    private ArrayList<String[]> convertSolution(long[] rows, ArrayList<String[]> results) {
+        String[] res = new String[rows.length];
+        for (int i = 0; i < rows.length; ++i) {
+            res[i] = Long.toBinaryString(rows[i])
+                    .replace('0', '.')
+                    .replace('1', 'Q');
+            while (res[i].length() < rows.length) res[i] = '.' + res[i];
+        }
+        results.add(res);
+        return results;
+    }
+
+    private ArrayList<String[]> solveNQueensHelper(long[] rows, int cur,
+                                                   long row, long lDiagonal, long rDiagonal,
+                                                   ArrayList<String[]> results) {
+        long validator = (1 << rows.length) - 1; // (1 1 1 ... 1), n of 1's
+        if (row == validator) { // find a solution
+            return convertSolution(rows, results);
+        } else {
+            long candidates = ((~(row | lDiagonal | rDiagonal)) & validator);
+            while (candidates > 0) { // find potential positions
+                // pick up lowest bit
+                long pos = (candidates & (0 - candidates));
+                candidates -= pos;
+                rows[cur] = pos;
+                solveNQueensHelper(rows, cur + 1, (row | pos),
+                        ((lDiagonal | pos) << 1), ((rDiagonal | pos) >> 1),
+                        results);
+            }
+        }
+        return results;
+    }
+
+    public ArrayList<String[]> _solveNQueens(int n) {
+        return solveNQueensHelper(new long[n], 0, 0, 0, 0,
+                new ArrayList<String[]>());
     }
 }
 
