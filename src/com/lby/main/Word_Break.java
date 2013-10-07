@@ -18,6 +18,7 @@ import java.util.Set;
  */
 
 public class Word_Break {
+    /*递归方式实现，最后一个大数据不过，尝试采用dp*/
     public boolean wordBreak(String s, Set<String> dict) {
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
         for (String str : dict) {
@@ -28,7 +29,7 @@ public class Word_Break {
                 map.put(len, 1);
             }
         }
-        return _wordBreak(s, dict, map);
+        return __wordBreak(s, dict, map);
     }
 
     public boolean _wordBreak(String s, Set<String> dict, Map<Integer, Integer> map) {
@@ -54,12 +55,30 @@ public class Word_Break {
         }
         return false;
     }
+    /************************************************************************************/
+    /*dp大数据通过*/
+    public boolean __wordBreak(String s,Set<String> dict,Map<Integer,Integer> map){
+        int len = s.length();
+        if(len<2){
+            if(dict.contains(s)){
+                return true;
+            }
+        }
+        boolean []dp = new boolean[len];
+        dp[0] = dict.contains(String.valueOf(s.charAt(0)));
+        for(int i=1;i<len;i++) {
+            dp[i] = dict.contains(s.substring(0,i+1));
+            if(dp[i]){
+                continue;
+            }
+            for(int j=i-1;j>=0;j--){
+                if(dp[j] && dict.contains(s.substring(j+1,i+1))){
+                    dp[i] = true;
+                    break;
+                }
+            }
 
-    public static void main(String... args) {
-        String s = "ab";
-        Set<String> set = new HashSet<String>();
-        set.add("a");
-        set.add("b");
-        new Word_Break().wordBreak(s, set);
+        }
+        return dp[len-1];
     }
 }

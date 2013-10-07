@@ -100,7 +100,8 @@ public class N_Queens {
         }
     }
 
-    /***************************************************************************************************************************************/
+    /**************************************************************************************************************************************/
+
     /*discussion的方法，运行速度不知道比我的快几倍，NB*/
     private ArrayList<String[]> convertSolution(long[] rows, ArrayList<String[]> results) {
         String[] res = new String[rows.length];
@@ -114,9 +115,7 @@ public class N_Queens {
         return results;
     }
 
-    private ArrayList<String[]> solveNQueensHelper(long[] rows, int cur,
-                                                   long row, long lDiagonal, long rDiagonal,
-                                                   ArrayList<String[]> results) {
+    private ArrayList<String[]> solveNQueensHelper(long[] rows, int cur, long row, long lDiagonal, long rDiagonal, ArrayList<String[]> results) {
         long validator = (1 << rows.length) - 1; // (1 1 1 ... 1), n of 1's
         if (row == validator) { // find a solution
             return convertSolution(rows, results);
@@ -136,8 +135,7 @@ public class N_Queens {
     }
 
     public ArrayList<String[]> _solveNQueens(int n) {
-        return solveNQueensHelper(new long[n], 0, 0, 0, 0,
-                new ArrayList<String[]>());
+        return solveNQueensHelper(new long[n], 0, 0, 0, 0, new ArrayList<String[]>());
     }
 }
 
