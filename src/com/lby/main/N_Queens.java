@@ -24,12 +24,9 @@ import java.util.ArrayList;
  * ]
  */
 public class N_Queens {
-    /*我的方法，但是一直内存溢出*/
+    /*我的方法，OK,搞定*/
     public ArrayList<String[]> solveNQueens(int n) {
         ArrayList<String[]> ret = new ArrayList<String[]>();
-        if (n == 10) {
-            return ret;
-        }
         if (n == 0) {
             String[] empty = {};
             ret.add(empty);
@@ -59,9 +56,11 @@ public class N_Queens {
     }
 
     public boolean check(int[] array, int n) {
-        for (int i = 1; i < n; i++) {
-            if (Math.abs(array[i] - array[i - 1]) == 1) {
-                return false;
+        for (int i = 0; i < n; i++) {
+            for(int j=i+1;j<n;j++){
+                if (Math.abs(array[j] - array[i]) == j-i) {
+                    return false;
+                }
             }
         }
         return true;
@@ -90,13 +89,14 @@ public class N_Queens {
     }
 
     public static void main(String... args) {
-        ArrayList<String[]> ret = new N_Queens()._solveNQueens(3);
+        ArrayList<String[]> ret = new N_Queens().solveNQueens(10);
+        System.out.println(ret.size());
         for (int i = 0; i < ret.size(); i++) {
             String[] str = ret.get(i);
             for (int j = 0; j < str.length; j++) {
-                System.out.println(str[j]);
+                //System.out.println(str[j]);
             }
-            System.out.println();
+            //System.out.println();
         }
     }
 
@@ -136,6 +136,12 @@ public class N_Queens {
 
     public ArrayList<String[]> _solveNQueens(int n) {
         return solveNQueensHelper(new long[n], 0, 0, 0, 0, new ArrayList<String[]>());
+    }
+    /*************************************************************************************************************************************/
+    /*没看懂上面的写法，重新写一个其它方法，好理解一些*/
+    public ArrayList<String[]> __solveNQueens(int n) {
+        boolean[]isUsed = new boolean[n];
+        return null;
     }
 }
 
