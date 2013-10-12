@@ -24,7 +24,11 @@ import java.util.ArrayList;
  * ]
  */
 public class N_Queens {
-    /*我的方法，OK,搞定*/
+    /*
+    * First Method
+    * 我的方法，简单易懂，OK,搞定
+    *
+    */
     public ArrayList<String[]> solveNQueens(int n) {
         ArrayList<String[]> ret = new ArrayList<String[]>();
         if (n == 0) {
@@ -102,7 +106,10 @@ public class N_Queens {
 
     /**************************************************************************************************************************************/
 
-    /*discussion的方法，运行速度不知道比我的快几倍，NB*/
+    /*
+     * Second Method
+     * discussion的方法，运行速度不知道比我的快几倍，NB，但是没太看懂
+     */
     private ArrayList<String[]> convertSolution(long[] rows, ArrayList<String[]> results) {
         String[] res = new String[rows.length];
         for (int i = 0; i < rows.length; ++i) {
@@ -138,7 +145,9 @@ public class N_Queens {
         return solveNQueensHelper(new long[n], 0, 0, 0, 0, new ArrayList<String[]>());
     }
     /*************************************************************************************************************************************/
-    /*没看懂上面的写法，重新写一个其它方法，好理解一些*/
+    /* Third Method
+     * 和我的第一个方法的区别在于全排列方法不同，下面的方法采用的是递归，但是优点在于check的时间是在构造全排列的过程中，可以不用等待全排列构造完，就可以return
+     */
     public ArrayList<String[]> __solveNQueens(int n) {
         boolean[]isUsed = new boolean[n];
         return null;
