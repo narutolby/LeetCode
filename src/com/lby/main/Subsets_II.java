@@ -61,4 +61,39 @@ public class Subsets_II {
 			 System.out.println(i);
 		 }
 	 }
+    /*
+     * The second method which does not need hashcode
+     * More efficient
+     */
+
+    public ArrayList<ArrayList<Integer>> _subsetsWithDup(int[] S) {
+        int length = 0;
+        ArrayList<ArrayList<Integer>> rootList = new ArrayList<ArrayList<Integer>>();
+        if (S == null || (length = S.length) == 0) {
+            return rootList;
+        }
+        Arrays.sort(S);
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+        rootList.add(list);
+        subset(S, rootList, temp, 0, length, 0);
+        return rootList;
+    }
+
+    public void subset(int[] s, ArrayList<ArrayList<Integer>> rootList, ArrayList<Integer> temp, int level, int length, int j) {
+        if (level == length) {
+            return;
+        }
+        for (int i = j; i < length; i++) {
+            if(i!=j && s[i-1]==s[i]) {
+                continue;
+            }
+            temp.add(s[i]);
+            ArrayList<Integer> list = new ArrayList<Integer>();
+            list.addAll(temp);
+            rootList.add(list);
+            subset(s, rootList, temp, level + 1, length, i + 1);
+            temp.remove(level);
+        }
+    }
 }
