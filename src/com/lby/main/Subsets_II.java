@@ -1,4 +1,5 @@
-package com.lby.main; 
+package com.lby.main;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,42 +26,45 @@ If S = [1,2,2], a solution is:
 ]
  */
 public class Subsets_II {
-	 private Set<String> set = new HashSet<String>();
-	 public ArrayList<ArrayList<Integer>> subsetsWithDup(int[] S) {
-		 set.clear();
-		 ArrayList<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
-         ArrayList<Integer> sub = new ArrayList<Integer>();
-         list.add(sub);
-         Arrays.sort(S); 
-         for(int i : S){
-        	 int len = list.size();
-        	 for(int j=0;j<len;j++){
-        		 sub= new ArrayList<Integer>();
-        		 sub.addAll(list.get(j)) ;
-        		 sub.add(i);
-        		 String hashCode = this.getHashCode(sub);
-        		 if(!set.contains(hashCode)){
-        			 list.add(sub);
-                     set.add(hashCode);        			 
-        		 }
-        	 }
-         }
-         return list;
+    private Set<String> set = new HashSet<String>();
+
+    public ArrayList<ArrayList<Integer>> subsetsWithDup(int[] S) {
+        set.clear();
+        ArrayList<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
+        ArrayList<Integer> sub = new ArrayList<Integer>();
+        list.add(sub);
+        Arrays.sort(S);
+        for (int i : S) {
+            int len = list.size();
+            for (int j = 0; j < len; j++) {
+                sub = new ArrayList<Integer>();
+                sub.addAll(list.get(j));
+                sub.add(i);
+                String hashCode = this.getHashCode(sub);
+                if (!set.contains(hashCode)) {
+                    list.add(sub);
+                    set.add(hashCode);
+                }
+            }
+        }
+        return list;
     }
-	 public String getHashCode(ArrayList<Integer>list){
-		 Collections.sort(list);
-		 StringBuilder sb = new StringBuilder(); 
-		 for(Integer i : list){
-			 sb.append(i);
-		 }
-		 return sb.toString();
-	 }
-	 public static void main(String[]args){
-		 int[]array = {1,2};
-		 for(int i:array){
-			 System.out.println(i);
-		 }
-	 }
+
+    public String getHashCode(ArrayList<Integer> list) {
+        Collections.sort(list);
+        StringBuilder sb = new StringBuilder();
+        for (Integer i : list) {
+            sb.append(i);
+        }
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        int[] array = {1, 2};
+        for (int i : array) {
+            System.out.println(i);
+        }
+    }
     /*
      * The second method which does not need hashcode
      * More efficient
@@ -85,7 +89,7 @@ public class Subsets_II {
             return;
         }
         for (int i = j; i < length; i++) {
-            if(i!=j && s[i-1]==s[i]) {
+            if (i != j && s[i - 1] == s[i]) {
                 continue;
             }
             temp.add(s[i]);
